@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 
-#define BUFFER_SIZE 10
+#define BUFFER_SIZE 20
 
 void vulnerableFunction(char *input) {
     char buffer[10];
@@ -13,7 +13,7 @@ int main() {
     char *dynamicArray = new char[BUFFER_SIZE];
     
     std::cout << "Geben Sie einen Text ein: ";
-    cin.width(BUFFER_SIZE);
+    std::cin.width(BUFFER_SIZE);
     std::cin >> dynamicArray;  // Pufferüberlauf: Es wird keine Länge des Eingabe-Strings überprüft
     
     vulnerableFunction(dynamicArray);
