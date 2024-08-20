@@ -1,0 +1,35 @@
+name: C++ Autobuild
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up C++ environment
+      uses: llvm/llvm-project@v1
+      with:
+        compiler: clang
+
+    - name: Install dependencies
+      run: sudo apt-get install -y g++
+
+    - name: Build
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make
+
+    - name: Run tests
+      run: ./build/your_executable_name
